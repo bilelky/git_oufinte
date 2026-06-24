@@ -1,0 +1,12 @@
+node {
+    stage('Clean workspace') {
+        cleanWs()
+    }
+    stage('Checkout SCM') {
+        checkout([$class: 'GitSCM', 
+            branches: [[name: '*/main']], 
+            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'repsite']], 
+            userRemoteConfigs: [[url: 'https://github.com/bilelky/git_oufinte.git']]
+        ])
+    }
+}
